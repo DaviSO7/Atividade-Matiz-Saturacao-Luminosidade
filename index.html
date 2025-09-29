@@ -57,74 +57,10 @@
             color: var(--cor-destaque);
             margin-bottom: 20px;
         }
-        .container-exemplo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            padding: 30px 0;
-            border-top: 1px solid var(--cor-borda);
-            margin-top: 20px;
-        }
-        .texto-exemplo {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .titulo-exemplo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: var(--cor-texto-principal);
-        }
-        .visual-exemplo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
-        }
-        .imagem-demonstracao {
-            width: 351px; 
-            height: 351px; 
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 5px solid white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.5s ease-in-out;
-        }
-        .botao-mudar {
-            background-color: var(--cor-destaque);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 3px 6px var(--cor-sombra);
-        }
-        .botao-mudar:hover {
-            background-color: hsl(210, 80%, 40%);
-            transform: translateY(-2px);
-        }
-        .botao-mudar:active {
-            transform: translateY(0);
-            box-shadow: 0 1px 3px var(--cor-sombra);
-        }
-        @media (max-width: 900px) {
-            .container-exemplo {
-                grid-template-columns: 1fr;
-            }
-            .imagem-demonstracao {
-                width: 100%; 
-                height: auto; 
-                max-width: 351px;
-            }
-        }
+        
+        /* Estilos dos exemplos foram movidos para a outra página, 
+           mas podem ser mantidos aqui se você quiser incluir o 
+           arquivo 'exemplos.html' dentro deste usando um iframe, por exemplo. */
     </style>
 </head>
 <body>
@@ -137,146 +73,19 @@
             <p>
                 A Matiz é a cor pura e é representada por um ângulo de 0 a 360 graus no círculo cromático. Ao mudar a matiz, você muda a cor base da imagem. Clique no botão para ver a alteração da tonalidade.
             </p>
-            <div class="container-exemplo">
-                <div class="texto-exemplo">
-                    <h3 class="titulo-exemplo" id="tituloMatiz"></h3>
-                    <p id="textoExemploMatiz"></p>
-                </div>
-                <div class="visual-exemplo">
-                    <img class="imagem-demonstracao" id="imagemMatiz" src="" alt="Exemplo de Matiz">
-                    <button class="botao-mudar" onclick="mudarExemplo('Matiz')">Mudar Imagem</button>
-                </div>
-            </div>
-        </section>
+            </section>
         <section class="cartao-conceito" id="secaoLuminosidade">
             <h2>Luminosidade</h2>
             <p>
                 A Luminosidade define a claridade da cor. É uma porcentagem de 0% (preto) a 100% (branco). Mudar a luminosidade torna a imagem mais clara ou mais escura. Clique para ver a variação de brilho.
             </p>
-            <div class="container-exemplo">
-                <div class="texto-exemplo">
-                    <h3 class="titulo-exemplo" id="tituloLuminosidade"></h3>
-                    <p id="textoExemploLuminosidade"></p>
-                </div>
-                <div class="visual-exemplo">
-                    <img class="imagem-demonstracao" id="imagemLuminosidade" src="" alt="Exemplo de Luminosidade">
-                    <button class="botao-mudar" onclick="mudarExemplo('Luminosidade')">Mudar Imagem</button>
-                </div>
-            </div>
-        </section>
+             </section>
         <section class="cartao-conceito" id="secaoSaturacao">
             <h2>Saturação</h2>
             <p>
                 A Saturação é a intensidade ou vivacidade da cor. É uma porcentagem de 0% (cinza) a 100% (cor mais pura). Mudar a saturação torna a imagem desbotada ou mais vibrante. Clique para ver o efeito na intensidade da cor.
             </p>
-            <div class="container-exemplo">
-                <div class="texto-exemplo">
-                    <h3 class="titulo-exemplo" id="tituloSaturacao"></h3>
-                    <p id="textoExemploSaturacao"></p>
-                </div>
-                <div class="visual-exemplo">
-                    <img class="imagem-demonstracao" id="imagemSaturacao" src="" alt="Exemplo de Saturação">
-                    <button class="botao-mudar" onclick="mudarExemplo('Saturacao')">Mudar Imagem</button>
-                </div>
-            </div>
-        </section>
+             </section>
     </main>
-
-
-    
-    
-    <!-- obs: prof como nos ainda nao aprendemos js e eu tinha essa ideia em mente eu utilizei do gemini (IA) pra fazer esse codigo de js para mim -->
-    <script>
-        const CAMINHO_IMAGENS = './assets/img/'; 
-        const dadosExemplos = {
-            Matiz: [
-                {
-                    titulo: "Matiz Original",
-                    texto: "A imagem na sua cor original. Este é o ponto de partida (Matiz padrão).",
-                    nomeArquivo: "img.png"
-                },
-                {
-                    titulo: "Matiz 1: Cor Alterada",
-                    texto: "A matiz foi alterada, mudando a tonalidade da imagem, mas mantendo o brilho e a saturação originais.",
-                    nomeArquivo: "matiz1.png"
-                }
-            ],
-            Luminosidade: [
-                {
-                    titulo: "Luminosidade Original",
-                    texto: "A imagem na sua luminosidade padrão (50% de referência).",
-                    nomeArquivo: "img.png"
-                },
-                {
-                    titulo: "Luminosidade 1: Baixa (Sombra)",
-                    texto: "A luminosidade foi reduzida, escurecendo a imagem, como se estivesse na sombra.",
-                    nomeArquivo: "lumi2.png" 
-                },
-                {
-                    titulo: "Luminosidade 2: Alta (Brilho)",
-                    texto: "A luminosidade foi aumentada drasticamente. A imagem está muito clara, quase branca.",
-                    nomeArquivo: "lumi1.png"
-                }
-            ],
-            Saturacao: [
-                {
-                    titulo: "Saturação Original",
-                    texto: "A imagem com saturação original.",
-                    nomeArquivo: "img.png"
-                },
-                {
-                    titulo: "Saturação 1: Máxima (Vibrante)",
-                    texto: "A saturação foi elevada ao máximo. As cores estão extremamente vívidas e intensas.",
-                    nomeArquivo: "sat1.png" 
-                },
-                {
-                    titulo: "Saturação 2: Zero (Cinza)",
-                    texto: "A saturação está em 0%. A imagem está em escala de cinza, mostrando apenas o brilho e a sombra.",
-                    nomeArquivo: "sat2.png"
-                }
-            ]
-        };
-        const indicesAtuais = {
-            Matiz: 0,
-            Luminosidade: 0,
-            Saturacao: 0
-        };
-        function mudarExemplo(conceito) {
-            const dados = dadosExemplos[conceito];
-            let indiceAtual = indicesAtuais[conceito];
-
-            indiceAtual = (indiceAtual + 1) % dados.length;
-
-            const novoDado = dados[indiceAtual];
-
-            const imagemElement = document.getElementById(`imagem${conceito}`);
-            imagemElement.style.opacity = '0';
-            
-            setTimeout(() => {
-                document.getElementById(`titulo${conceito}`).textContent = novoDado.titulo;
-                document.getElementById(`textoExemplo${conceito}`).textContent = novoDado.texto;
-                imagemElement.src = CAMINHO_IMAGENS + novoDado.nomeArquivo;
-                
-                imagemElement.style.opacity = '1';
-
-                indicesAtuais[conceito] = indiceAtual;
-            }, 500);
-        }
-
-        function inicializarPagina() {
-            ['Matiz', 'Luminosidade', 'Saturacao'].forEach(conceito => {
-                const dados = dadosExemplos[conceito];
-                const primeiroDado = dados[0];
-
-                document.getElementById(`titulo${conceito}`).textContent = primeiroDado.titulo;
-                document.getElementById(`textoExemplo${conceito}`).textContent = primeiroDado.texto;
-                document.getElementById(`imagem${conceito}`).src = CAMINHO_IMAGENS + primeiroDado.nomeArquivo;
-                indicesAtuais[conceito] = 0;
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', inicializarPagina);
-    </script>
-
 </body>
 </html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplos de Matiz, Luminosidade e Saturação</title>
+    <style>
+        :root {
+            --cor-fundo-principal: #f0f4f7; 
+            --cor-texto-principal: #333;
+            --cor-destaque: hsl(210, 80%, 50%);
+            --cor-borda: #ddd;
+            --cor-sombra: rgba(0, 0, 0, 0.15);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--cor-texto-principal);
+            background-color: var(--cor-fundo-principal);
+            padding: 20px;
+        }
+        /* Estilo para o Header */
+        .titulo-principal {
+            text-align: center;
+            color: var(--cor-destaque);
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 4px var(--cor-sombra);
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--cor-destaque);
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Estilos específicos para os exemplos */
+        .secao-exemplos {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Reduzi o gap para ficar mais coeso */
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .container-exemplo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 30px;
+            border-radius: 15px; /* Adicionei para consistência visual */
+            background-color: white; /* Adicionei para destacar */
+            box-shadow: 0 8px 20px var(--cor-sombra); /* Adicionei para destacar */
+        }
+        .texto-exemplo {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .titulo-exemplo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--cor-destaque); /* Mudei para cor de destaque */
+        }
+        .visual-exemplo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        .imagem-demonstracao {
+            width: 351px; 
+            height: 351px; 
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+        .botao-mudar {
+            background-color: var(--cor-destaque);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 3px 6px var(--cor-sombra);
+        }
+        .botao-mudar:hover {
+            background-color: hsl(210, 80%, 40%);
+            transform: translateY(-2px);
+        }
+        .botao-mudar:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px var(--cor-sombra);
+        }
+        @media (max-width: 900px) {
+            .container-exemplo {
+                grid-template-columns: 1fr;
+            }
+            .imagem-demonstracao {
+                width: 100%; 
+                height: auto; 
+                max-width: 351px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="titulo-principal">Matiz, Luminosidade e Saturação</h1>
+    </header>
+
+    <main class="secao-exemplos">
+        <div class="container-exemplo">
+            <div class="texto-exemplo">
+                <h3 class="titulo-exemplo" id="tituloMatiz"></h3>
+                <p id="textoExemploMatiz"></p>
+            </div>
+            <div class="visual-exemplo">
+                <img class="imagem-demonstracao" id="imagemMatiz" src="" alt="Exemplo de Matiz">
+                <button class="botao-mudar" onclick="mudarExemplo('Matiz')">Mudar Imagem</button>
+            </div>
+        </div>
+
+        <div class="container-exemplo">
+            <div class="texto-exemplo">
+                <h3 class="titulo-exemplo" id="tituloLuminosidade"></h3>
+                <p id="textoExemploLuminosidade"></p>
+            </div>
+            <div class="visual-exemplo">
+                <img class="imagem-demonstracao" id="imagemLuminosidade" src="" alt="Exemplo de Luminosidade">
+                <button class="botao-mudar" onclick="mudarExemplo('Luminosidade')">Mudar Imagem</button>
+            </div>
+        </div>
+
+        <div class="container-exemplo">
+            <div class="texto-exemplo">
+                <h3 class="titulo-exemplo" id="tituloSaturacao"></h3>
+                <p id="textoExemploSaturacao"></p>
+            </div>
+            <div class="visual-exemplo">
+                <img class="imagem-demonstracao" id="imagemSaturacao" src="" alt="Exemplo de Saturação">
+                <button class="botao-mudar" onclick="mudarExemplo('Saturacao')">Mudar Imagem</button>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Assumindo que as imagens estão em uma pasta ./assets/img/
+        const CAMINHO_IMAGENS = './assets/img/'; 
+        const dadosExemplos = {
+            Matiz: [
+                {
+                    titulo: "Matiz Original",
+                    texto: "A imagem na sua cor original. Este é o ponto de partida (Matiz padrão).",
+                    nomeArquivo: "img.png"
+                },
+                {
+                    titulo: "Matiz 1: Cor Alterada",
+                    texto: "A matiz foi alterada, mudando a tonalidade da imagem, mas mantendo o brilho e a saturação originais.",
+                    nomeArquivo: "matiz1.png"
+                }
+            ],
+            Luminosidade: [
+                {
+                    titulo: "Luminosidade Original",
+                    texto: "A imagem na sua luminosidade padrão (50% de referência).",
+                    nomeArquivo: "img.png"
+                },
+                {
+                    titulo: "Luminosidade 1: Baixa (Sombra)",
+                    texto: "A luminosidade foi reduzida, escurecendo a imagem, como se estivesse na sombra.",
+                    nomeArquivo: "lumi2.png" 
+                },
+                {
+                    titulo: "Luminosidade 2: Alta (Brilho)",
+                    texto: "A luminosidade foi aumentada drasticamente. A imagem está muito clara, quase branca.",
+                    nomeArquivo: "lumi1.png"
+                }
+            ],
+            Saturacao: [
+                {
+                    titulo: "Saturação Original",
+                    texto: "A imagem com saturação original.",
+                    nomeArquivo: "img.png"
+                },
+                {
+                    titulo: "Saturação 1: Máxima (Vibrante)",
+                    texto: "A saturação foi elevada ao máximo. As cores estão extremamente vívidas e intensas.",
+                    nomeArquivo: "sat1.png" 
+                },
+                {
+                    titulo: "Saturação 2: Zero (Cinza)",
+                    texto: "A saturação está em 0%. A imagem está em escala de cinza, mostrando apenas o brilho e a sombra.",
+                    nomeArquivo: "sat2.png"
+                }
+            ]
+        };
+        const indicesAtuais = {
+            Matiz: 0,
+            Luminosidade: 0,
+            Saturacao: 0
+        };
+        function mudarExemplo(conceito) {
+            const dados = dadosExemplos[conceito];
+            let indiceAtual = indicesAtuais[conceito];
+
+            indiceAtual = (indiceAtual + 1) % dados.length;
+
+            const novoDado = dados[indiceAtual];
+            const imagemElement = document.getElementById(`imagem${conceito}`);
+            imagemElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById(`titulo${conceito}`).textContent = novoDado.titulo;
+                document.getElementById(`textoExemplo${conceito}`).textContent = novoDado.texto;
+                imagemElement.src = CAMINHO_IMAGENS + novoDado.nomeArquivo;
+                imagemElement.style.opacity = '1';
+                indicesAtuais[conceito] = indiceAtual;
+            }, 500);
+        }
+
+        function inicializarPagina() {
+            ['Matiz', 'Luminosidade', 'Saturacao'].forEach(conceito => {
+                const dados = dadosExemplos[conceito];
+                const primeiroDado = dados[0];
+
+                document.getElementById(`titulo${conceito}`).textContent = primeiroDado.titulo;
+                document.getElementById(`textoExemplo${conceito}`).textContent = primeiroDado.texto;
+                document.getElementById(`imagem${conceito}`).src = CAMINHO_IMAGENS + primeiroDado.nomeArquivo;
+                indicesAtuais[conceito] = 0;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', inicializarPagina);
+    </script>
+</body>
+</html>
