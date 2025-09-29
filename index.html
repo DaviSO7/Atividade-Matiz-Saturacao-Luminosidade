@@ -17,6 +17,9 @@
             margin: 0;
             padding: 0;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -24,15 +27,49 @@
             background-color: var(--cor-fundo-principal);
             padding: 20px;
         }
-        .titulo-principal {
+        header {
             text-align: center;
-            color: var(--cor-destaque);
             margin-bottom: 40px;
+        }
+        .titulo-principal {
+            color: var(--cor-destaque);
             font-size: 2.8em;
             text-shadow: 2px 2px 4px var(--cor-sombra);
             padding-bottom: 10px;
             border-bottom: 3px solid var(--cor-destaque);
+            display: inline-block;
         }
+
+        .menu-navegacao {
+            background-color: white;
+            padding: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px var(--cor-sombra);
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            margin-bottom: 40px;
+        }
+        .menu-navegacao ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .menu-navegacao a {
+            text-decoration: none;
+            color: var(--cor-destaque);
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu-navegacao a:hover {
+            background-color: var(--cor-destaque);
+            color: white;
+        }
+
         .secao-pesquisa {
             display: flex;
             flex-direction: column;
@@ -57,35 +94,87 @@
             color: var(--cor-destaque);
             margin-bottom: 20px;
         }
-        
-        /* Estilos dos exemplos foram movidos para a outra página, 
-           mas podem ser mantidos aqui se você quiser incluir o 
-           arquivo 'exemplos.html' dentro deste usando um iframe, por exemplo. */
+        .cartao-conceito strong { 
+            color: var(--cor-destaque);
+            font-weight: 600;
+        }
+
+        .container-botao-final {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .botao-acao {
+            display: inline-block;
+            background-color: var(--cor-destaque);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px var(--cor-sombra);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .botao-acao:hover {
+            background-color: hsl(210, 80%, 60%);
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
     <header>
         <h1 class="titulo-principal">Matiz, Luminosidade e Saturação</h1>
     </header>
+
+    <nav class="menu-navegacao">
+        <ul>
+            <li><a href="#secaoMatiz">Matiz</a></li>
+            <li><a href="#secaoLuminosidade">Luminosidade</a></li>
+            <li><a href="#secaoSaturacao">Saturação</a></li>
+            <li><a href="#secaoComparacao">HSL vs. RGB</a></li>
+        </ul>
+    </nav>
+
     <main class="secao-pesquisa">   
         <section class="cartao-conceito" id="secaoMatiz">
-            <h2>Matiz</h2>
+            <h2>Matiz (Hue)</h2>
             <p>
-                A Matiz é a cor pura e é representada por um ângulo de 0 a 360 graus no círculo cromático. Ao mudar a matiz, você muda a cor base da imagem. Clique no botão para ver a alteração da tonalidade.
+                A Matiz é a cor em seu estado puro, como o "vermelho", "verde" ou "azul". Ela é representada por um ângulo de <strong>0 a 360 graus</strong> no círculo cromático. Por exemplo: 0° é vermelho, 120° é verde e 240° é azul. Alterar a matiz é como girar o seletor de cores para escolher uma tonalidade completamente nova, sem afetar seu brilho ou intensidade.
             </p>
-            </section>
+        </section>
+
         <section class="cartao-conceito" id="secaoLuminosidade">
-            <h2>Luminosidade</h2>
+            <h2>Luminosidade (Lightness)</h2>
             <p>
-                A Luminosidade define a claridade da cor. É uma porcentagem de 0% (preto) a 100% (branco). Mudar a luminosidade torna a imagem mais clara ou mais escura. Clique para ver a variação de brilho.
+                A Luminosidade define o quão clara ou escura uma cor é. É uma porcentagem que vai de <strong>0% (preto total)</strong> a <strong>100% (branco total)</strong>. O valor de 50% representa a cor em sua claridade "normal". Mudar a luminosidade é útil para criar versões mais escuras (sombras) ou mais claras (tons) de uma mesma cor base.
             </p>
-             </section>
+        </section>
+
         <section class="cartao-conceito" id="secaoSaturacao">
-            <h2>Saturação</h2>
+            <h2>Saturação (Saturation)</h2>
             <p>
-                A Saturação é a intensidade ou vivacidade da cor. É uma porcentagem de 0% (cinza) a 100% (cor mais pura). Mudar a saturação torna a imagem desbotada ou mais vibrante. Clique para ver o efeito na intensidade da cor.
+                A Saturação descreve a intensidade ou a "pureza" de uma cor. Também é representada por uma porcentagem, indo de <strong>0% (totalmente cinza)</strong> a <strong>100% (a cor mais vibrante e pura possível)</strong>. Diminuir a saturação torna a cor mais opaca e acinzentada, enquanto aumentá-la a deixa mais viva e rica.
             </p>
-             </section>
+        </section>
+
+        <section class="cartao-conceito" id="secaoComparacao">
+            <h2>HSL vs. RGB/Hex</h2>
+            <p>
+                Enquanto o <strong>HSL</strong> é projetado para ser intuitivo para a percepção humana, os modelos <strong>RGB</strong> e <strong>Hexadecimal</strong> funcionam de maneira diferente:
+            </p>
+            <ul>
+                <li><strong>RGB (Red, Green, Blue):</strong> Descreve uma cor pela mistura de luz vermelha, verde e azul (escala de 0 a 255 para cada). É como as telas de computadores e TVs fisicamente produzem as cores. No entanto, é pouco intuitivo para fazer ajustes finos. Por exemplo, para deixar um azul mais claro, você precisa aumentar os valores de vermelho e verde, o que não é um processo óbvio.</li>
+                <br>
+                <li><strong>Hex (Hexadecimal):</strong> É apenas uma forma mais compacta de escrever o código RGB, usando a notação hexadecimal (ex: #0000FF para azul). É muito comum na web, mas sofre da mesma falta de intuitividade do RGB para manipulação humana.</li>
+            </ul>
+            <p>
+                A grande vantagem do <strong>HSL</strong> é permitir que você ajuste a claridade ou a intensidade de uma cor (Luminosidade e Saturação) sem precisar recalcular os três valores de cor, como seria necessário no RGB.
+            </p>
+        </section>
     </main>
+
+    <footer class="container-botao-final">
+        <a href="./index2.html" class="botao-acao">Ver Exemplos</a>
+    </footer>
 </body>
 </html>
